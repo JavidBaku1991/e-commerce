@@ -1,6 +1,7 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
-/* Removed unsupported @theme and @layer blocks, and @apply rules for Tailwind v4 compatibility. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 button:focus,
 button:focus-visible {

@@ -1,0 +1,2 @@
+@import "tailwindcss/utilities";
+.bg-red-500 { background-color: red !important; }
