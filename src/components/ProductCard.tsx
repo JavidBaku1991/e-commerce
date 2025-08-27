@@ -17,6 +17,7 @@ import {
 } from "@/store/cartSlice";
 import { addToCompare } from "@/store/compareSlice";
 import type { RootState } from "@/store";
+import type { Product } from "@/store/cartSlice";
 
 interface ProductCardProps {
   product: {
@@ -32,11 +33,11 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch();
   const cartItem = useSelector((state: RootState) =>
-    state.cart.items.find((item) => item.id === product.id)
+    state.cart.items.find((item: Product) => item.id === product.id)
   );
   const inCart = !!cartItem;
   const compareItems = useSelector((state: RootState) => state.compare.items);
-  const inCompare = compareItems.some((item) => item.id === product.id);
+  const inCompare = compareItems.some((item: Product) => item.id === product.id);
   const compareDisabled = inCompare || compareItems.length >= 3;
 
   const handleAddToCart = () => {

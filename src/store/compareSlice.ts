@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Product } from './cartSlice';
 
-interface CompareState {
+// 🔹 Export state type so store/index.ts can use it
+export interface CompareState {
   items: Product[];
 }
 
@@ -15,7 +16,11 @@ const compareSlice = createSlice({
   initialState,
   reducers: {
     addToCompare: (state, action: PayloadAction<Product>) => {
-      if (state.items.length < 3 && !state.items.find(item => item.id === action.payload.id)) {
+      // Allow max 3 items, and prevent duplicates
+      if (
+        state.items.length < 3 &&
+        !state.items.find(item => item.id === action.payload.id)
+      ) {
         state.items.push(action.payload);
       }
     },
@@ -28,5 +33,7 @@ const compareSlice = createSlice({
   },
 });
 
-export const { addToCompare, removeFromCompare, clearCompare } = compareSlice.actions;
+export const { addToCompare, removeFromCompare, clearCompare } =
+  compareSlice.actions;
+
 export default compareSlice.reducer;

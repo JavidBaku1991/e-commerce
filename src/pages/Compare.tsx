@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store";
 import { removeFromCompare, clearCompare } from "@/store/compareSlice";
 import { Button } from "@/components/ui/button";
+import type { Product } from "@/store/cartSlice";
 
 const Compare: React.FC = () => {
   const compareItems = useSelector((state: RootState) => state.compare.items);
@@ -16,7 +17,7 @@ const Compare: React.FC = () => {
       ) : (
         <>
           <div className="flex flex-wrap gap-8 mb-8 justify-center items-stretch">
-            {compareItems.map((product) => (
+            {compareItems.map((product: Product) => (
               <div key={product.id} className="flex-1 min-w-[250px] min-w-0 min-h-[320px] p-4 sm:p-6 rounded-xl border shadow bg-white flex flex-col gap-2 items-center justify-between">
                 <div className="flex items-center justify-center mb-4">
                   <img src={product.image} alt={product.title} className="h-24 w-24 object-contain" />

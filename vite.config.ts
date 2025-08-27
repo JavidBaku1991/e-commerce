@@ -5,10 +5,11 @@ import path from 'path';
 
 
 export default defineConfig({
+    base: '/e-commerce-tailwind/',
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(process.cwd(), 'src'),
     },
   },
 });

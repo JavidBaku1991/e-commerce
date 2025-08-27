@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store";
-import { removeFromCart, clearCart } from "@/store/cartSlice";
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
+import { clearCart } from "@/store/cartSlice";
+import type { Product } from "@/store/cartSlice";
 
 const Cart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
 
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
+  const totalPrice = cartItems.reduce((sum: number, item: Product & { quantity: number }) => sum + item.price * (item.quantity || 1), 0);
 
   const installmentOptions = [3, 6, 9, 12];
 
@@ -35,7 +36,7 @@ const Cart: React.FC = () => {
           </div>
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-            {cartItems.map((product) => (
+            {cartItems.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
