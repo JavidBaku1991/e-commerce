@@ -24,14 +24,16 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-<div className="grid grid-cols-4 gap-6 mt-8">
-  {loading ? (
-    <div className="col-span-4 text-center">Loading products...</div>
-  ) : (
-    products.map((product) => (
-      <ProductCard key={product.id} product={product} />
-    ))
-  )}
+<div className="container mx-auto px-4 mt-8">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {loading ? (
+      <div className="col-span-full text-center">Məhsullar yüklənir...</div>
+    ) : (
+      products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))
+    )}
+  </div>
 </div>
 
   );
