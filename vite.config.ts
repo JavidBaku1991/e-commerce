@@ -5,7 +5,7 @@ import path from 'path';
 
 
 export default defineConfig({
-    base: '/e-commerce-tailwind/',
+    base: '/',
   plugins: [react()],
   resolve: {
     alias: {
