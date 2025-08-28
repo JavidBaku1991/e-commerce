@@ -10,7 +10,7 @@ const Navbar = () => {
           <span className="font-bold text-xl text-blue-700 tracking-tight">E-Shopperce</span>
         </div>
         <div className="flex gap-2 sm:gap-4 ml-auto flex-wrap">
-          <Link to="/" className="font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</Link>
+          <Link to="/e-commerce" className="font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</Link>
           <Link to="/all-products" className="font-medium text-gray-700 hover:text-blue-600 transition-colors">All Products</Link>
           <Link to="/cart" className="relative font-medium text-gray-700 hover:text-blue-600 transition-colors">Cart</Link>
           <Link to="/compare" className="relative font-medium text-gray-700 hover:text-blue-600 transition-colors">Compare</Link>
