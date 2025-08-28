@@ -7,7 +7,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex flex-wrap items-center px-4 sm:px-6 py-3">
         <div className="flex items-center gap-3">
           <img src="/vite.svg" alt="Logo" className="h-8 w-8" />
-          <span className="font-bold text-xl text-blue-700 tracking-tight">Shopperce</span>
+          <span className="font-bold text-xl text-blue-700 tracking-tight">E-Shopperce</span>
         </div>
         <div className="flex gap-2 sm:gap-4 ml-auto flex-wrap">
           <Link to="/" className="font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</Link>
