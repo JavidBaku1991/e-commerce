@@ -23,7 +23,7 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-4 sm:gap-6">
-          <Link to="/" className="font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</Link>
+          <Link to="/e-commerce" className="font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</Link>
           <Link to="/all-products" className="font-medium text-gray-700 hover:text-blue-600 transition-colors">All Products</Link>
           <Link to="/cart" className="font-medium text-gray-700 hover:text-blue-600 transition-colors">Cart</Link>
           <Link to="/compare" className="font-medium text-gray-700 hover:text-blue-600 transition-colors">Compare</Link>
@@ -65,7 +65,7 @@ const Navbar = () => {
               <ul className="flex flex-col gap-4 mt-4">
                 <li>
                   <DrawerClose asChild>
-                    <Link to="/">Home</Link>
+                    <Link to="/e-commerce">Home</Link>
                   </DrawerClose>
                 </li>
                 <li>
