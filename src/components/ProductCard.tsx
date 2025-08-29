@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -39,6 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const compareItems = useSelector((state: RootState) => state.compare.items);
   const inCompare = compareItems.some((item: Product) => item.id === product.id);
   const compareDisabled = inCompare || compareItems.length >= 3;
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
@@ -48,8 +50,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     dispatch(removeFromCart(product.id));
   };
 
+  // Card click handler (ignore clicks on buttons)
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Prevent navigation if a button was clicked
+    if ((e.target as HTMLElement).closest('button')) return;
+    navigate(`/product/${product.id}`);
+  };
+
   return (
-    <Card className="group flex flex-col rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] w-56 min-h-[320px] p-2 m-2 overflow-hidden">
+    <Card
+      className="group flex flex-col rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] w-56 min-h-[320px] p-2 m-2 overflow-hidden cursor-pointer"
+      onClick={handleCardClick}
+    >
       {/* Image */}
       <CardHeader className="flex items-center justify-center p-2">
         <div className="flex aspect-square w-24 items-center justify-center overflow-hidden rounded-lg bg-gray-50">

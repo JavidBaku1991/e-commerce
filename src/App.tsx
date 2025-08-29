@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import AllProducts from "./pages/AllProducts";
 import Cart from "./pages/Cart";
 import Compare from "./pages/Compare";
+import ProductPage from "./pages/ProductPage";
+import ProductDetails from "./pages/ProductDetails";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -20,6 +22,8 @@ function App() {
               <Route path="/all-products" element={<AllProducts />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/compare" element={<Compare />} />
+              <Route path="/products" element={<ProductPage />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
             </Routes>
           </main>
           <Footer />
