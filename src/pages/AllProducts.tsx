@@ -34,19 +34,19 @@ const AllProducts: React.FC = () => {
   );
 
   return (
-    <div className="mt-8">
-      <h1 className="text-2xl font-bold mb-6">All Products</h1>
-  <div className="container mx-auto px-4 mt-8">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {loading ? (
-        <div className="col-span-full text-center">Loading products...</div>
-      ) : (
-        paginatedProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))
-      )}
-    </div>
-  </div>
+    <div className="mt-8 bg-white dark:bg-gray-900 min-h-[60vh]">
+      <h1 className="text-2xl font-bold mb-6 text-gray-700 dark:text-gray-200">All Products</h1>
+      <div className="container mx-auto px-4 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {loading ? (
+            <div className="col-span-full text-center text-gray-700 dark:text-gray-200">Loading products...</div>
+          ) : (
+            paginatedProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          )}
+        </div>
+      </div>
       {/* Pagination */}
       <div className="flex justify-center items-center gap-2 mt-8">
         <Button

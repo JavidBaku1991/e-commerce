@@ -2,6 +2,7 @@ import * as React from "react";
 
 interface DrawerContextType {
   open: boolean;
+  
   onOpenChange: (open: boolean) => void;
 }
 const DrawerContext = React.createContext<DrawerContextType | undefined>(undefined);
@@ -9,6 +10,7 @@ const DrawerContext = React.createContext<DrawerContextType | undefined>(undefin
 interface DrawerProps {
   children: React.ReactNode;
   open: boolean;
+  
   onOpenChange: (open: boolean) => void;
 }
 export function Drawer({ children, open, onOpenChange }: DrawerProps) {
@@ -34,8 +36,9 @@ export function DrawerTrigger({ children }: DrawerTriggerProps) {
 
 interface DrawerContentProps {
   children: React.ReactNode;
+   className?: string | undefined;
 }
-export function DrawerContent({ children }: DrawerContentProps) {
+export function DrawerContent({ children, className }: DrawerContentProps) {
   const ctx = React.useContext(DrawerContext);
   if (!ctx || !ctx.open) return null;
 
@@ -48,7 +51,7 @@ export function DrawerContent({ children }: DrawerContentProps) {
       />
 
       {/* Drawer panel */}
-      <div className="ml-auto w-64 bg-white h-full shadow-lg p-4 relative z-10">
+      <div className={`ml-auto w-64 h-full shadow-lg p-4 relative z-10 ${className ?? 'bg-white dark:bg-gray-800'}`}>
         {children}
       </div>
     </div>

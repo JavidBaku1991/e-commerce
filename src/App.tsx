@@ -14,7 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div className="min-h-screen flex flex-col">
+  <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-600">
           <Navbar />
           <main className="flex-1 container mx-auto px-4 py-8 mt-20">
             <Routes>

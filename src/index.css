@@ -21,9 +21,7 @@ button:focus-visible {
   }
 }
 
-/* Removed unsupported @theme block for Tailwind v4 compatibility. */
 
-/* Custom dark theme variables */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
