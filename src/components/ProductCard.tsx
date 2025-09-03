@@ -1,4 +1,5 @@
 import React from "react";
+import { FaShoppingCart, FaTrash, FaStar, FaRegStar } from "react-icons/fa";
 import { toast } from "@/lib/toast";
 import { useNavigate } from "react-router-dom";
 import {
@@ -54,74 +55,88 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const handleRemoveFromCart = () => {
     dispatch(removeFromCart(product.id));
-    toast.success(`${product.title} removed from cart!`); 
+    toast.success(`${product.title} removed from cart!`);
   };
 
-  // Card click handler (ignore clicks on buttons)
   const handleCardClick = (e: React.MouseEvent) => {
-    // Prevent navigation if a button was clicked
-    if ((e.target as HTMLElement).closest('button')) return;
+    if ((e.target as HTMLElement).closest("button")) return;
     navigate(`/product/${product.id}`);
   };
 
   return (
     <Card
-      className="group flex flex-col rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] w-56 min-h-[320px] p-2 m-2 overflow-hidden cursor-pointer"
+      className="group flex flex-col rounded-2xl border border-gray-200 shadow-sm 
+      hover:shadow-2xl hover:border-blue-400 dark:hover:border-blue-500 
+      transition-all duration-300 hover:scale-[1.03] w-60 min-h-[350px] p-3 m-3 
+      overflow-hidden cursor-pointer bg-white dark:bg-gray-800 relative"
       onClick={handleCardClick}
     >
       {/* Image */}
       <CardHeader className="flex items-center justify-center p-2">
-        <div className="flex aspect-square w-24 items-center justify-center overflow-hidden rounded-lg bg-gray-50">
+        <div className="relative flex aspect-square w-28 items-center justify-center overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-700">
           <img
             src={product.image}
             alt={product.title}
-            className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-105"
+            className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-110"
           />
+          {/* Floating Compare button */}
+          <Button
+            size="sm"
+            variant="secondary"
+            disabled={compareDisabled}
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(addToCompare(product));
+            }}
+            className="absolute bottom-2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-[11px] rounded-md px-2 py-1"
+          >
+            {inCompare
+              ? "Added"
+              : compareItems.length >= 3
+              ? "Max 3"
+              : "Compare"}
+          </Button>
         </div>
       </CardHeader>
 
       {/* Info */}
       <CardContent className="flex flex-col text-center flex-grow px-2">
-        <CardTitle className="text-sm font-semibold line-clamp-2 break-words">
+        <CardTitle className="text-sm font-semibold line-clamp-2 break-words group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
           {product.title}
         </CardTitle>
-        <CardDescription className="text-xs text-gray-400">
+        <CardDescription className="text-xs text-gray-500 dark:text-gray-400">
           {product.category}
         </CardDescription>
-        <span className="font-bold text-blue-600 text-sm mt-1">
+        <span className="font-bold text-blue-600 dark:text-blue-400 text-sm mt-1">
           ${product.price}
         </span>
+
+        {/* Rating */}
         {product.rating && (
           <div className="flex items-center justify-center mt-1 mb-1">
-            <span className="text-yellow-500 mr-1 text-xs">
-              {'★'.repeat(Math.round(product.rating.rate))}
-              {'☆'.repeat(5 - Math.round(product.rating.rate))}
+            <span className="flex mr-1 text-yellow-500 text-sm transition-colors">
+              {Array.from({ length: 5 }).map((_, i) =>
+                i < Math.round(product.rating.rate) ? (
+                  <FaStar key={i} />
+                ) : (
+                  <FaRegStar key={i} />
+                )
+              )}
             </span>
-            <span className="text-[10px] text-gray-500 dark:text-gray-400">({product.rating.rate})</span>
+            <span className="text-[11px] text-gray-500 dark:text-gray-400">
+              ({product.rating.rate})
+            </span>
           </div>
         )}
+
         {inCart && cartItem?.quantity && (
-          <span className="text-[11px] text-green-600 font-semibold">
+          <span className="text-[12px] text-green-600 font-semibold">
             Total: ${(product.price * cartItem.quantity).toFixed(2)}
           </span>
         )}
 
-        {/* Compare Button */}
-        <Button
-          className="rounded-lg w-full text-xs mt-2"
-          onClick={() => dispatch(addToCompare(product))}
-          variant="secondary"
-          disabled={compareDisabled}
-        >
-          {inCompare
-            ? "Added to Compare"
-            : compareItems.length >= 3
-            ? "Max 3 Products"
-            : "Compare"}
-        </Button>
-
         {/* Description */}
-        <p className="text-[11px] text-gray-500 line-clamp-3 mt-2 break-words">
+        <p className="text-[11px] text-gray-500 dark:text-gray-400 line-clamp-3 mt-2 break-words group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
           {product.description}
         </p>
       </CardContent>
@@ -130,35 +145,47 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <CardFooter className="mt-auto w-full py-2 flex flex-col gap-1 items-center">
         {!inCart ? (
           <Button
-            className="w-full rounded-lg text-xs"
-            onClick={handleAddToCart}
+            className="w-full rounded-lg text-xs hover:bg-blue-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleAddToCart();
+            }}
             variant="default"
           >
-            Add to Cart
+            <FaShoppingCart /> Add to Cart
           </Button>
         ) : (
           <div className="flex gap-1 w-full items-center justify-center">
             <Button
-              onClick={() => dispatch(decreaseQuantity(product.id))}
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(decreaseQuantity(product.id));
+              }}
               variant="outline"
-              className="px-2 text-xs"
+              className="px-2 text-xs hover:bg-red-100 dark:hover:bg-red-800 transition"
             >
-              -1
+              -
             </Button>
             <span className="font-semibold text-xs">{cartItem?.quantity}</span>
             <Button
-              onClick={() => dispatch(increaseQuantity(product.id))}
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(increaseQuantity(product.id));
+              }}
               variant="outline"
-              className="px-2 text-xs"
+              className="px-2 text-xs hover:bg-green-100 dark:hover:bg-green-800 transition"
             >
-              +1
+              +
             </Button>
             <Button
-              className="rounded-sm text-xs"
-              onClick={handleRemoveFromCart}
+              className="rounded-sm text-xs hover:bg-red-500 hover:text-white transition-all flex items-center gap-1"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleRemoveFromCart();
+              }}
               variant="destructive"
             >
-              Delete
+              <FaTrash className="text-gray-700 dark:text-gray-200" />
             </Button>
           </div>
         )}

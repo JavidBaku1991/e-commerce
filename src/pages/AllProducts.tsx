@@ -21,10 +21,10 @@ const AllProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000);
+  const [minPrice, setMinPrice] = useState<string>("");
+  const [maxPrice, setMaxPrice] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [minRating, setMinRating] = useState(0);
+  const [minRating, setMinRating] = useState<string>("");
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products?limit=100")
@@ -37,12 +37,20 @@ const AllProducts: React.FC = () => {
 
   const categories = Array.from(new Set(products.map(p => p.category)));
 
-  const filteredProducts = products.filter(product =>
-    product.price >= minPrice &&
-    product.price <= maxPrice &&
-    (selectedCategory === '' || product.category === selectedCategory) &&
-    (product.rating?.rate ?? 0) >= minRating
-  );
+  const filteredProducts = products.filter(product => {
+    const price = product.price;
+    const rating = product.rating?.rate ?? 0;
+    // Price filter
+    if (minPrice !== "" && price < Number(minPrice)) return false;
+    if (maxPrice !== "" && price > Number(maxPrice)) return false;
+    // Category filter
+    if (selectedCategory !== '' && product.category !== selectedCategory) return false;
+    // Rating filter (strict match)
+    if (minRating !== "" && rating !== Number(minRating)) return false;
+    return true;
+  });
+
+  
 
   const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   const paginatedProducts = filteredProducts.slice(
@@ -58,11 +66,23 @@ const AllProducts: React.FC = () => {
       <div className="container mx-auto px-4 mb-6 flex flex-wrap gap-4 items-center">
         <div>
           <label className="block text-xs mb-1 text-gray-700 dark:text-gray-200">Min Price</label>
-          <input type="number" min={0} value={minPrice} onChange={e => setMinPrice(Number(e.target.value))} className="border rounded px-2 py-1 w-24 dark:bg-gray-800 dark:text-gray-200" />
+          <input
+            type="number"
+            min={0}
+            value={minPrice}
+            onChange={e => setMinPrice(e.target.value)}
+            className="border rounded px-2 py-1 w-24 dark:bg-gray-800 dark:text-gray-200"
+          />
         </div>
         <div>
           <label className="block text-xs mb-1 text-gray-700 dark:text-gray-200">Max Price</label>
-          <input type="number" min={0} value={maxPrice} onChange={e => setMaxPrice(Number(e.target.value))} className="border rounded px-2 py-1 w-24 dark:bg-gray-800 dark:text-gray-200" />
+          <input
+            type="number"
+            min={0}
+            value={maxPrice}
+            onChange={e => setMaxPrice(e.target.value)}
+            className="border rounded px-2 py-1 w-24 dark:bg-gray-800 dark:text-gray-200"
+          />
         </div>
         <div>
           <label className="block text-xs mb-1 text-gray-700 dark:text-gray-200">Category</label>
@@ -74,8 +94,17 @@ const AllProducts: React.FC = () => {
           </select>
         </div>
         <div>
-          <label className="block text-xs mb-1 text-gray-700 dark:text-gray-200">Min Rating</label>
-          <input type="number" min={0} max={5} step={0.1} value={minRating} onChange={e => setMinRating(Number(e.target.value))} className="border rounded px-2 py-1 w-24 dark:bg-gray-800 dark:text-gray-200" />
+          <label className="block text-xs mb-1 text-gray-700 dark:text-gray-200">Rating</label>
+          <input
+            type="number"
+            min={0}
+            max={5}
+            step={0.1}
+            value={minRating}
+            onChange={e => setMinRating(e.target.value)}
+            className="border rounded px-2 py-1 w-24 dark:bg-gray-800 dark:text-gray-200"
+            placeholder="Rating"
+          />
         </div>
       </div>
 
