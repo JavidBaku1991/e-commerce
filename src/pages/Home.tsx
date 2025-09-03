@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "@/components/ProductCard";
+import Carousel from "@/components/Carousel";
 
 interface Product {
   id: number;
@@ -39,6 +40,10 @@ const Home: React.FC = () => {
           )}
         </div>
       </div>
+      {/* Carousel below products */}
+      {!loading && products.length > 0 && (
+        <Carousel products={products.slice(0, 5).map(p => ({ id: p.id, title: p.title, image: p.image }))} />
+      )}
     </div>
   );
 };
