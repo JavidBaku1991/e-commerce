@@ -1,11 +1,11 @@
 import './App.css';
+import { Toaster } from "@/lib/toast";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import AllProducts from "./pages/AllProducts";
 import Cart from "./pages/Cart";
 import Compare from "./pages/Compare";
-import ProductPage from "./pages/ProductPage";
 import ProductDetails from "./pages/ProductDetails";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -15,6 +15,7 @@ function App() {
     <Provider store={store}>
       <Router>
   <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-600">
+          <Toaster position="top-right" />
           <Navbar />
           <main className="flex-1 container mx-auto px-4 py-8 mt-20">
             <Routes>
@@ -22,7 +23,6 @@ function App() {
               <Route path="/all-products" element={<AllProducts />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/compare" element={<Compare />} />
-              <Route path="/products" element={<ProductPage />} />
               <Route path="/product/:id" element={<ProductDetails />} />
             </Routes>
           </main>

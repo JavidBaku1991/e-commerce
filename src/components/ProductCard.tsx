@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "@/lib/toast";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -28,6 +29,10 @@ interface ProductCardProps {
     description: string;
     category: string;
     image: string;
+    rating?: {
+      rate: number;
+      count: number;
+    };
   };
 }
 
@@ -44,10 +49,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    toast.success(`${product.title} added to cart!`);
   };
 
   const handleRemoveFromCart = () => {
     dispatch(removeFromCart(product.id));
+    toast.success(`${product.title} removed from cart!`); 
   };
 
   // Card click handler (ignore clicks on buttons)
@@ -84,6 +91,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <span className="font-bold text-blue-600 text-sm mt-1">
           ${product.price}
         </span>
+        {product.rating && (
+          <div className="flex items-center justify-center mt-1 mb-1">
+            <span className="text-yellow-500 mr-1 text-xs">
+              {'★'.repeat(Math.round(product.rating.rate))}
+              {'☆'.repeat(5 - Math.round(product.rating.rate))}
+            </span>
+            <span className="text-[10px] text-gray-500 dark:text-gray-400">({product.rating.rate})</span>
+          </div>
+        )}
         {inCart && cartItem?.quantity && (
           <span className="text-[11px] text-green-600 font-semibold">
             Total: ${(product.price * cartItem.quantity).toFixed(2)}
