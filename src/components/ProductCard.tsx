@@ -65,10 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Card
-      className="group flex flex-col rounded-2xl border border-gray-200 shadow-sm 
-      hover:shadow-2xl hover:border-blue-400 dark:hover:border-blue-500 
-      transition-all duration-300 hover:scale-[1.03] w-60 min-h-[350px] p-3 m-3 
-      overflow-hidden cursor-pointer bg-white dark:bg-gray-800 relative"
+      className="group flex flex-col rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 hover:scale-[1.03] w-60 min-h-[350px] p-3 m-3 overflow-hidden cursor-pointer bg-white/30 dark:bg-gray-800/30 backdrop-blur-lg backdrop-saturate-150 relative"
       onClick={handleCardClick}
     >
       {/* Image */}

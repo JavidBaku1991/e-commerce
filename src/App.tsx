@@ -17,7 +17,7 @@ function App() {
   <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-600">
           <Toaster position="top-right" />
           <Navbar />
-          <main className="flex-1 container mx-auto px-4 py-8 mt-20">
+          <main className="flex-1 container mx-auto px-4 py-8 mt-5">
             <Routes>
               <Route path="/e-commerce" element={<Home />} />
               <Route path="/all-products" element={<AllProducts />} />
