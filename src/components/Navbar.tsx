@@ -86,7 +86,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden flex items-center gap-3">
+        <div className="md:hidden flex items-center gap-3  ">
           <button
             aria-label="Open menu"
             onClick={() => setOpen(true)}
@@ -109,9 +109,9 @@ const Navbar = () => {
           </button>
 
           <Drawer open={open} onOpenChange={setOpen}>
-            <DrawerContent className="bg-white dark:bg-gray-900 border-t dark:border-gray-700 rounded-t-2xl shadow-2xl animate-slideUp">
+            <DrawerContent className="bg-white dark:bg-gray-900 border-t dark:border-gray-700  shadow-2xl animate-slideUp z-index-50 h-full">
               <DrawerHeader>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between ">
                   <span className="text-xl font-bold text-gray-700 dark:text-gray-200">
                     Menu
                   </span>
@@ -126,7 +126,7 @@ const Navbar = () => {
                 </div>
               </DrawerHeader>
 
-              <ul className="flex flex-col gap-5 mt-6 px-4">
+              <ul className="flex flex-col gap-5 mt-6 px-4 bg-inherit">
                 {[
                   { name: "Home", path: "/e-commerce" },
                   { name: "All Products", path: "/all-products" },

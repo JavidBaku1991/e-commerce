@@ -43,7 +43,7 @@ export function DrawerContent({ children, className }: DrawerContentProps) {
   if (!ctx || !ctx.open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex">
+    <div className="fixed inset-0 z-[100] flex">
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black bg-opacity-40"
@@ -51,7 +51,7 @@ export function DrawerContent({ children, className }: DrawerContentProps) {
       />
 
       {/* Drawer panel */}
-      <div className={`ml-auto w-64 h-full shadow-lg p-4 relative z-10 ${className ?? 'bg-white dark:bg-gray-800'}`}>
+         <div className={`ml-auto w-64 h-screen shadow-lg p-4 relative z-100 ${className ?? 'bg-white dark:bg-gray-800'}`}>
         {children}
       </div>
     </div>

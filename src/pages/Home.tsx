@@ -44,7 +44,7 @@ const Home: React.FC = () => {
         </div>
         {/* Carousel below products */}
         {!loading && products.length > 0 && (
-          <Carousel products={products.slice(0, 5).map(p => ({ id: p.id, title: p.title, image: p.image }))} />
+          <Carousel products={products.slice(0, 5).map(p => ({ id: p.id, title: p.title, image: p.image, price: p.price }))} />
         )}
       </div>
     </>

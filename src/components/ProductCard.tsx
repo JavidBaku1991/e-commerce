@@ -113,7 +113,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="flex items-center justify-center mt-1 mb-1">
             <span className="flex mr-1 text-yellow-500 text-sm transition-colors">
               {Array.from({ length: 5 }).map((_, i) =>
-                i < Math.round(product.rating.rate) ? (
+                i < Math.round(product.rating?.rate ?? 0) ? (
                   <FaStar key={i} />
                 ) : (
                   <FaRegStar key={i} />

@@ -63,7 +63,7 @@ const Cart: React.FC = () => {
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8 place-items-center">
             {cartItems.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}
