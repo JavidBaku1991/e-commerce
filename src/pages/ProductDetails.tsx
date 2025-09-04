@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
@@ -7,6 +7,7 @@ import { addToCompare } from "@/store/compareSlice";
 import { toast } from "@/lib/toast";
 
 const ProductDetails: React.FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -57,7 +58,11 @@ const ProductDetails: React.FC = () => {
 
         {/* Product Info */}
         <div className="flex-1 flex flex-col">
-          <h1 className="text-2xl md:text-3xl font-bold mb-3 text-gray-800 dark:text-gray-100">
+          <h1
+            className="text-2xl md:text-3xl font-bold mb-3 text-gray-800 dark:text-gray-100 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            onClick={() => navigate("/e-commerce")}
+            title="Go to Home"
+          >
             {product.title}
           </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-2 capitalize">

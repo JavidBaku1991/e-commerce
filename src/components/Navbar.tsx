@@ -6,6 +6,7 @@ import {
   DrawerClose,
 } from "./ui/drawer";
 import { Link } from "react-router-dom";
+import { Sun, Moon, Menu } from "lucide-react"; // 👈 fancy icons
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
@@ -35,17 +36,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
         {/* Logo + Title */}
         <div className="flex items-center gap-3">
-          <img
-            src="/vite.svg"
-            alt="Logo"
-            className="h-9 w-9 drop-shadow-lg hover:scale-110 transition-transform duration-300"
-          />
-          <span className="font-extrabold text-xl text-blue-700 dark:text-blue-400 tracking-tight">
-            E-Shopperce
-          </span>
+          <Link to="/e-commerce">
+            <span className="font-extrabold text-xl text-blue-700 dark:text-blue-400 tracking-tight">
+              E-Shopperce
+            </span>
+          </Link>
         </div>
 
-        {/* Desktop  */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
           {[
             { name: "Home", path: "/e-commerce" },
@@ -64,53 +62,50 @@ const Navbar = () => {
             </Link>
           ))}
 
+          {/* Fancy Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="ml-4 px-3 py-1 rounded-lg border bg-gray-100 dark:bg-gray-800 dark:text-white flex items-center gap-2 hover:shadow-md transition-all"
+            className="ml-4 px-3 py-2 rounded-xl border bg-gray-100 dark:bg-gray-800 dark:text-white flex items-center gap-2 hover:shadow-lg transition-all"
             aria-label="Toggle light/dark mode"
           >
             <span
               className={`transition-transform duration-500 ${
-                theme === "light" ? "rotate-0" : "rotate-180"
+                theme === "light" ? "rotate-0 scale-100" : "rotate-180 scale-110"
               }`}
             >
-              {theme === "light" ? "🌞" : "🌙"}
+              {theme === "light" ? (
+                <Sun className="w-5 h-5 text-yellow-500" />
+              ) : (
+                <Moon className="w-5 h-5 text-blue-400" />
+              )}
             </span>
-            <span className="hidden sm:inline text-sm">
+            <span className="hidden sm:inline text-sm font-semibold">
               {theme === "light" ? "Light" : "Dark"}
             </span>
           </button>
         </div>
 
-        {/* Mobile  */}
+        {/* Mobile Menu */}
         <div className="md:hidden flex items-center gap-3">
           <button
             aria-label="Open menu"
             onClick={() => setOpen(true)}
             className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition"
           >
-            <svg
-              width="26"
-              height="26"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-menu"
-            >
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
+            <Menu className="w-6 h-6" />
           </button>
 
+          {/* Mobile Theme Toggle */}
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg border bg-gray-100 dark:bg-gray-800 dark:text-white hover:shadow-md transition"
             aria-label="Toggle light/dark mode"
           >
-            {theme === "light" ? "🌞" : "🌙"}
+            {theme === "light" ? (
+              <Sun className="w-5 h-5 text-yellow-500" />
+            ) : (
+              <Moon className="w-5 h-5 text-blue-400" />
+            )}
           </button>
 
           <Drawer open={open} onOpenChange={setOpen}>

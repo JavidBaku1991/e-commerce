@@ -18,13 +18,13 @@ const Carousel: React.FC<CarouselProps> = ({ products }) => {
       <Splide
         options={{
           type: 'loop',
-          perPage: 1,
+          perPage: 3,
           arrows: true,
           pagination: true,
           autoplay: true,
           interval: 3500,
         }}
-        className="w-full max-w-md mx-auto"
+        className="w-full max-w-4xl mx-auto px-2 sm:px-4"
       >
         {products.map((product) => (
           <SplideSlide key={product.id}>
