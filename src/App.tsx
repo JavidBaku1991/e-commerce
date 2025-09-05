@@ -20,10 +20,10 @@ function App() {
           <main className="flex-1 container mx-auto px-4 py-8 mt-5">
             <Routes>
               <Route path="/e-commerce" element={<Home />} />
-              <Route path="/all-products" element={<AllProducts />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/compare" element={<Compare />} />
-              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/e-commerce/all-products" element={<AllProducts />} />
+              <Route path="/e-commerce/cart" element={<Cart />} />
+              <Route path="/e-commerce/compare" element={<Compare />} />
+              <Route path="/e-commerce/product/:id" element={<ProductDetails />} />
             </Routes>
           </main>
           <Footer />

@@ -26,7 +26,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className="container mx-auto px-4 mb-6 bg-white dark:bg-gray-900 min-h-[60vh]">
+      <div className="container mx-auto bg-white dark:bg-gray-900 min-h-[60vh]">
         <Hero />
         {/* Center products horizontally on mobile */}
         <div className="flex justify-center">

@@ -11,4 +11,5 @@ export default defineConfig({
       '@': path.resolve(process.cwd(), 'src'),
     },
   },
+  // For SPA routing, configure your production server to rewrite all routes to index.html
 });
