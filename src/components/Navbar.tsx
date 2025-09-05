@@ -46,7 +46,7 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
           {[
-            { name: "Home", path: "/e-commerce" },
+            { name: "Home", path: "/" },
             { name: "All Products", path: "/all-products" },
             { name: "Cart", path: "/cart" },
             { name: "Compare", path: "/compare" },
@@ -128,7 +128,7 @@ const Navbar = () => {
 
               <ul className="flex flex-col gap-5 mt-6 px-4 bg-inherit">
                 {[
-                  { name: "Home", path: "/e-commerce" },
+                  { name: "Home", path: "/" },
                   { name: "All Products", path: "/all-products" },
                   { name: "Cart", path: "/cart" },
                   { name: "Compare", path: "/compare" },
