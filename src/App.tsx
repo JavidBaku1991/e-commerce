@@ -7,7 +7,7 @@ import AllProducts from "./pages/AllProducts";
 import Cart from "./pages/Cart";
 import Compare from "./pages/Compare";
 import ProductDetails from "./pages/ProductDetails";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 function App() {
